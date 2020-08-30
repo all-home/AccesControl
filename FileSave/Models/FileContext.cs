@@ -10,6 +10,6 @@ namespace FileSave.Models
             Database.EnsureCreated();
         }
 
-        public DbSet<File> WorkersItems { get; set; }
+        public DbSet<File> FileItems { get; set; }
     }
 }

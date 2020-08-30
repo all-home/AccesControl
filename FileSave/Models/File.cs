@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FileSave.Models
+﻿namespace FileSave.Models
 {
     public class File
     {

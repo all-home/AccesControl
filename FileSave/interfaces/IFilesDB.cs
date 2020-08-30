@@ -5,12 +5,12 @@ using FileSave.Models;
 
 namespace FileSave.interfaces
 {
-    interface FilesDB
+    interface IFilesDB
     {
         IEnumerable<File> Get();
-        void Get(int id);
+        File Get(int id);
         void Create(File file);
-        void Delete(int id);
+        File Delete(int id);
          
 
 
