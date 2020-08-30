@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FileSave\FileSave.csproj" />
     <ProjectReference Include="..\WorkersDB\WorkersDB.csproj" />
   </ItemGroup>
 
