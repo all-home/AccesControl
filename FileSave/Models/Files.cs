@@ -1,6 +1,6 @@
 ﻿namespace FileSave.Models
 {
-    public class File
+    public class Files
     {
         public int id { get; set; }
         public string Name { get; set; }

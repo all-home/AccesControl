@@ -9,15 +9,15 @@ namespace FileSave.GRUD
     class FilesDB : IFilesDB
     {
         FileContext Context;
-        public void Create(File file)
+        public void Create(Files file)
         {
             Context.FileItems.Add(file);
             Context.SaveChanges();
         }
 
-        public File Delete(int id)
+        public Files Delete(int id)
         {
-            File file = Get(id);
+            Files file = Get(id);
 
             if (file != null)
             {
@@ -29,12 +29,12 @@ namespace FileSave.GRUD
             return file;
         }
 
-        public IEnumerable<File> Get()
+        public IEnumerable<Files> Get()
         {
             return Context.FileItems;
         }
 
-        public File Get(int id)
+        public Files Get(int id)
         {
             return Context.FileItems.Find(id);
         }

@@ -7,10 +7,10 @@ namespace FileSave.interfaces
 {
     interface IFilesDB
     {
-        IEnumerable<File> Get();
-        File Get(int id);
-        void Create(File file);
-        File Delete(int id);
+        IEnumerable<Files> Get();
+        Files Get(int id);
+        void Create(Files file);
+        Files Delete(int id);
          
 
 
