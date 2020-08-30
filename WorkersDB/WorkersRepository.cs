@@ -47,7 +47,7 @@ namespace WorkersDB
             WorkerCurrent.Tel = item.Tel;
             WorkerCurrent.TagId = item.TagId;
 
-            context.WorkersItems.AddOrUpdate(WorkerCurrent);
+            context.WorkersItems.Update(WorkerCurrent);
             context.SaveChanges();
 
         }

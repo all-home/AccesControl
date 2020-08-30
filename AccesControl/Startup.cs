@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WorkersDB.Models;
 using Microsoft.Extensions.Hosting;
-
+using FileSave.Models;
 
 namespace AccesControl
 {
@@ -33,6 +33,7 @@ namespace AccesControl
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
                 services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             });
 
 
