@@ -8,7 +8,7 @@ namespace WorkersDB.Interfaces
         IEnumerable<Statistics> Get();
         Statistics Get(int id);
         void Create(Statistics item);
-        void Update(Statistics item);
-       
+        Statistics Delete(int id);
+
     }
 }

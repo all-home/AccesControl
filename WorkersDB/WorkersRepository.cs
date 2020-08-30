@@ -1,5 +1,4 @@
-﻿using System;
-using WorkersDB.Models;
+﻿using WorkersDB.Models;
 using WorkersDB.Interfaces;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
