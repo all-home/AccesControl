@@ -3,7 +3,7 @@ using WorkersDB.Models;
 
 namespace WorkersDB.Interfaces
 {
-    interface IGRUDWork
+    public interface IGRUDWork
     {
         IEnumerable<Worker> Get();
         Worker Get(int id);
