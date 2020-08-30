@@ -8,6 +8,12 @@ namespace WorkersDB
     public class WorkersRepository : IGRUDWork
     {
         private WorkerContext context;
+
+        public WorkersRepository(WorkerContext _context)
+        {
+            context = _context;
+        }
+
         public IEnumerable<Worker> Get()
         {
             return context.WorkersItems;
