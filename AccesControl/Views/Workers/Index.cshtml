@@ -7,26 +7,24 @@
     <table class="table">
         <thead>
             <tr>
+                
                 <th>
-                    @Html.DisplayNameFor(model => model.TagId)
+                   Имя
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Name)
+                    Фамилия
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Surname)
+                    Отчество
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Patronymic)
+                    Тел.
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Tel)
+                    Должглсть
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Position)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ImageID)
+                    фото
                 </th>
                 <th></th>
             </tr>
@@ -35,9 +33,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TagId)
-                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -54,7 +49,7 @@
                         @Html.DisplayFor(modelItem => item.Position)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImageID)
+                        <img />
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
