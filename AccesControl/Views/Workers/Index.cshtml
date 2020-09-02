@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WorkersDB.Models.Worker>
+@{
+    ViewData["Title"] = "Работники";
+}
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>
+                   Имя
+                </th>
+                <th>
+                    Фамилия
+                </th>
+                <th>
+                    Отчество
+                </th>
+                <th>
+                    Тел.
+                </th>
+                <th>
+                    Должглсть
+                </th>
+                <th>
+                    фото
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Patronymic)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position)
+                    </td>
+                    <td>
+                        <img />
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    </div>
+

@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkersDB", "WorkersDB\Work
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSave", "FileSave\FileSave.csproj", "{D20809D7-3024-4DEB-90BE-0DE759FBCD25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{1F4D93E6-05A9-44F1-B967-0B60FB23C45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{1F4D93E6-05A9-44F1-B967-0B60FB23C45A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesDB", "ProfilesDB\ProfilesDB.csproj", "{731BB4AE-C0AA-42D5-AC92-501CE3A00E5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1F4D93E6-05A9-44F1-B967-0B60FB23C45A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F4D93E6-05A9-44F1-B967-0B60FB23C45A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F4D93E6-05A9-44F1-B967-0B60FB23C45A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731BB4AE-C0AA-42D5-AC92-501CE3A00E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731BB4AE-C0AA-42D5-AC92-501CE3A00E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731BB4AE-C0AA-42D5-AC92-501CE3A00E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731BB4AE-C0AA-42D5-AC92-501CE3A00E5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,6 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using WorkersDB.Models;
 using Microsoft.Extensions.Hosting;
 using FileSave.Models;
+using WorkersDB.Interfaces;
+using WorkersDB;
 
 namespace AccesControl
 {
@@ -32,11 +34,11 @@ namespace AccesControl
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-                services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-                services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                
             });
-
-
+            services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddScoped<IGRUDWork, WorkersRepository>();
             services.AddRazorPages();
         }
 
