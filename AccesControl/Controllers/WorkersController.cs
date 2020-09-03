@@ -6,23 +6,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WorkersDB;
 using WorkersDB.Interfaces;
+//using BusniessLogic;
 
 namespace AccesControl.Controllers
 {
     public class WorkersController : Controller
     {
-        private readonly IGRUDWork WorkRepo;
-
-        public WorkersController(IGRUDWork gRUDWork)
-        {
-            WorkRepo = gRUDWork;
-        }
-
-
+          
         // GET: WorkersController
         public ActionResult Index()
         {
-            return View(WorkRepo.Get());
+            return View();
         }
 
         // GET: WorkersController/Details/5

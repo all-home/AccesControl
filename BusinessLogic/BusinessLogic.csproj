@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FileSave\FileSave.csproj" />
+    <ProjectReference Include="..\ProfilesDB\ProfilesDB.csproj" />
     <ProjectReference Include="..\WorkersDB\WorkersDB.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,6 +14,6 @@ namespace BusinessLogic.Models
         public string Patronymic { get; set; }
         public string Tel { get; set; }
         public string Position { get; set; }
-        public int ImageID { get; set; }
+        public IFormFile Image { get; set; }
     }
 }
