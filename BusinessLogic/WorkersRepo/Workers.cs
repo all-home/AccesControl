@@ -13,7 +13,7 @@ namespace BusinessLogic.WorkersRepo
         private readonly IGRUDWorker WorkRepo;
         private readonly IFileUGD File;
 
-        public Workers(IGRUDWork gRUDWork, IFileUGD _File)
+        public Workers(IGRUDWorker gRUDWork, IFileUGD _File)
         {
             File = _File;
             WorkRepo = gRUDWork;
@@ -53,20 +53,22 @@ namespace BusinessLogic.WorkersRepo
             WorkRepo.Delete(id);
         }
 
-        public void Update(Worker item)
+        public void Update(WorkerModel item)
         {
             Worker WorkerCurrent = Get(item.id);
 
-            WorkerCurrent.Name = item.Name;
-            WorkerCurrent.Surname = item.Surname;
-            WorkerCurrent.Patronymic = item.Patronymic;
-            WorkerCurrent.Position = item.Position;
-            WorkerCurrent.ImageID = item.ImageID;
-            WorkerCurrent.Tel = item.Tel;
-            WorkerCurrent.TagId = item.TagId;
+            if (WorkerCurrent != null && TagIdChec(item.TagId))
+            {
+                WorkerCurrent.Name = item.Name;
+                WorkerCurrent.Surname = item.Surname;
+                WorkerCurrent.Patronymic = item.Patronymic;
+                WorkerCurrent.Position = item.Position;
+                WorkerCurrent.ImageID = File.Upload(item.Image) ?? default(int);
+                WorkerCurrent.Tel = item.Tel;
+                WorkerCurrent.TagId = item.TagId ?? default(int);
 
-            context.WorkersItems.Update(WorkerCurrent);
-            context.SaveChanges();
+                WorkRepo.Update(WorkerCurrent);
+            }                      
 
         }
 
