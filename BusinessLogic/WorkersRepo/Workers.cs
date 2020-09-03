@@ -4,15 +4,18 @@ using System.Collections.Generic;
 using System.Text;
 using WorkersDB.Interfaces;
 using WorkersDB.Models;
+using FileSave.interfaces;
 
 namespace BusinessLogic.WorkersRepo
 {
     class Workers
     {
-        private readonly IGRUDWork WorkRepo;
+        private readonly IGRUDWorker WorkRepo;
+        private readonly IFileUGD File;
 
-        public Workers(IGRUDWork gRUDWork)
+        public Workers(IGRUDWork gRUDWork, IFileUGD _File)
         {
+            File = _File;
             WorkRepo = gRUDWork;
         }
 
@@ -28,26 +31,26 @@ namespace BusinessLogic.WorkersRepo
 
         public void Create(WorkerModel item)
         {
-            Worker NewWorker = new Worker {
-                Name = item.Name,
-                Surname = item.Surname,
-                Patronymic = item.Patronymic,
-                Tel = item.Tel,
-                TagId = item.TagId,
-            
-            };
+            if (item != null && TagIdChec(item.TagId))
+            {
+                Worker NewWorker = new Worker
+                {
+                    Name = item.Name,
+                    Surname = item.Surname,
+                    Patronymic = item.Patronymic,
+                    Tel = item.Tel,
+                    TagId = item.TagId ?? default(int),
+                    Position = item.Position,
+                    ImageID = File.Upload(item.Image) ?? default(int)
+
+                };
+                WorkRepo.Create(NewWorker);
+            }
         }
 
-        public Worker Delete(int id)
+        public void Delete(int id)
         {
-            Worker Worker = Get(id);
-
-            if (Worker != null)
-            {
-                context.WorkersItems.Remove(Worker);
-                context.SaveChanges();
-            }
-            return Worker;
+            WorkRepo.Delete(id);
         }
 
         public void Update(Worker item)
@@ -67,9 +70,24 @@ namespace BusinessLogic.WorkersRepo
 
         }
 
-        private bool TagIdChec (int TagId)
+        //Check Readed Tag
+        private bool TagIdChec (int? TagId)
         {
-            return false;
+            if (TagId != null)
+            {
+                var Workers = WorkRepo.GetWorkerByTagID(TagId);
+                if (Workers == null)
+                {
+                    return true;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+            return false; 
+            
         }
 
     }

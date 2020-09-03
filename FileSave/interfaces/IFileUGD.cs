@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FileSave.interfaces
 {
-    interface IFileUGD
+    public interface IFileUGD
     {
         int? Upload(IFormFile file);
         void Delete(int id);

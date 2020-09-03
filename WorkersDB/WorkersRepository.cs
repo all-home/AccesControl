@@ -2,10 +2,11 @@
 using WorkersDB.Interfaces;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
 
 namespace WorkersDB
 {
-    public class WorkersRepository : IGRUDWork
+    public class WorkersRepository : IGRUDWorker
     {
         private WorkerContext context;
 
@@ -57,5 +58,11 @@ namespace WorkersDB
             context.SaveChanges();
 
         }
+
+        public Worker GetWorkerByTagID(int? TagId)
+        {
+            return (Worker)context.WorkersItems.Where(a  => a.TagId == TagId);    
+        }
+                
     }
 }

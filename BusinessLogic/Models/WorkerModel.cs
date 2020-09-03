@@ -7,8 +7,7 @@ namespace BusinessLogic.Models
 {
     class WorkerModel
     {
-        public int id { get; set; }
-        public int TagId { get; set; }
+        public int? TagId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Patronymic { get; set; }
