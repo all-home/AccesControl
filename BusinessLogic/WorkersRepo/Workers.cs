@@ -5,10 +5,11 @@ using System.Text;
 using WorkersDB.Interfaces;
 using WorkersDB.Models;
 using FileSave.interfaces;
+using BusinessLogic.Interfaces;
 
 namespace BusinessLogic.WorkersRepo
 {
-    class Workers
+    class Workers : IWorkersRepo
     {
         private readonly IGRUDWorker WorkRepo;
         private readonly IFileUGD File;

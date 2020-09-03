@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BusinessLogic.Models
 {
-    class WorkerModel
+    public class WorkerModel
     {
         public int id { get; set; }
         public int? TagId { get; set; }
