@@ -1,21 +1,20 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using FileSave.GRUD;
 using FileSave.interfaces;
 using FileSave.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace FileSave
 {
     public class FiileDelGetUpload : IFileUGD
     {
-        FilesDB FilesDB;
+        IFilesDB FilesDB;
         IHostingEnvironment _appEnvironment;
-        public FiileDelGetUpload(IHostingEnvironment appEnvironment)
+        public FiileDelGetUpload(IHostingEnvironment appEnvironment, IFilesDB _FilesDB)
         {
+            FilesDB = _FilesDB;
             _appEnvironment = appEnvironment;
         }
 
@@ -37,25 +36,21 @@ namespace FileSave
             return null;
         }
 
-        public int? Upload(IFormFile file)
+        public string Upload(IFormFile file)
         {
            string FileName = GetFilename();
-           int? id = null;
            string patch = _appEnvironment.ContentRootPath + "/Files/" + FileName;
-
-            try
-            {
-                using (var fileStream = new FileStream(patch, FileMode.Create))
+                        
+           using (var fileStream = new FileStream(patch, FileMode.Create))
                 {
                     file.CopyToAsync(fileStream);
                 }
-            }
-            catch
-            {             
-            
-            }
 
-            return id;
+            FilesDB.Create(new Files { 
+            Patch = patch,
+            Name = FileName
+            });
+            return patch;
         }
 
         private string GetFilename()

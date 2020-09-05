@@ -14,6 +14,11 @@ using Microsoft.Extensions.Hosting;
 using FileSave.Models;
 using WorkersDB.Interfaces;
 using WorkersDB;
+using FileSave.interfaces;
+using FileSave.GRUD;
+using FileSave;
+using BusinessLogic.Interfaces;
+using BusinessLogic.WorkersRepo;
 
 namespace AccesControl
 {
@@ -38,7 +43,10 @@ namespace AccesControl
             });
             services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddScoped<IGRUDWork, WorkersRepository>();
+            services.AddScoped<IGRUDWorker, WorkersRepository>();
+            services.AddScoped<IFilesDB, FilesDB>();
+            services.AddScoped<IFileUGD, FiileDelGetUpload>();
+            services.AddScoped<IWorkersRepo, Workers>();
             services.AddRazorPages();
         }
 

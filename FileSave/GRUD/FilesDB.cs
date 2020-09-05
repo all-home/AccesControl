@@ -6,9 +6,9 @@ using FileSave.Models;
 
 namespace FileSave.GRUD
 {
-    class FilesDB : IFilesDB
+    public class FilesDB : IFilesDB
     {
-        FileContext Context;
+        private readonly FileContext Context;
         public void Create(Files file)
         {
             Context.FileItems.Add(file);

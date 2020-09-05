@@ -6,17 +6,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WorkersDB;
 using WorkersDB.Interfaces;
-//using BusniessLogic;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Models;
 
 namespace AccesControl.Controllers
 {
     public class WorkersController : Controller
     {
-          
+        IWorkersRepo repo;
+
+        public WorkersController(IWorkersRepo repo)
+        {
+            this.repo = repo;
+        }
+
+
         // GET: WorkersController
         public ActionResult Index()
         {
-            return View();
+            return View(repo.Get());
         }
 
         // GET: WorkersController/Details/5
@@ -36,6 +44,7 @@ namespace AccesControl.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            
             try
             {
                 return RedirectToAction(nameof(Index));

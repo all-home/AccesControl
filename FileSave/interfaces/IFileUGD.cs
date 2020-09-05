@@ -6,7 +6,7 @@ namespace FileSave.interfaces
 {
     public interface IFileUGD
     {
-        int? Upload(IFormFile file);
+        string Upload(IFormFile file);
         void Delete(int id);
         string GetFileAdress(int id);
     }

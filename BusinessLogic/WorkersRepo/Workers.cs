@@ -9,7 +9,7 @@ using BusinessLogic.Interfaces;
 
 namespace BusinessLogic.WorkersRepo
 {
-    class Workers : IWorkersRepo
+    public class Workers : IWorkersRepo
     {
         private readonly IGRUDWorker WorkRepo;
         private readonly IFileUGD File;
@@ -42,7 +42,7 @@ namespace BusinessLogic.WorkersRepo
                     Tel = item.Tel,
                     TagId = item.TagId ?? default(int),
                     Position = item.Position,
-                    ImageID = File.Upload(item.Image) ?? default(int)
+                    ImageID = File.Upload(item.Image)
 
                 };
                 WorkRepo.Create(NewWorker);
@@ -64,7 +64,7 @@ namespace BusinessLogic.WorkersRepo
                 WorkerCurrent.Surname = item.Surname;
                 WorkerCurrent.Patronymic = item.Patronymic;
                 WorkerCurrent.Position = item.Position;
-                WorkerCurrent.ImageID = File.Upload(item.Image) ?? default(int);
+                WorkerCurrent.ImageID = File.Upload(item.Image);
                 WorkerCurrent.Tel = item.Tel;
                 WorkerCurrent.TagId = item.TagId ?? default(int);
 
