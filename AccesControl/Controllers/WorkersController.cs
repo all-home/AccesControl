@@ -42,11 +42,12 @@ namespace AccesControl.Controllers
         // POST: WorkersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create([Bind("Name, Surname, Patronymic, Tel, Position,TagId,Image")] WorkerModel worker)
         {
-            
+           
             try
             {
+                repo.Create(worker);
                 return RedirectToAction(nameof(Index));
             }
             catch

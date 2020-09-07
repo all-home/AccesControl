@@ -9,6 +9,12 @@ namespace WorkersDB
     class SatisticsRepository : IStat
     {
         private WorkerContext Context;
+
+        public SatisticsRepository(WorkerContext _context)
+        {
+            Context = _context;
+        }
+
         public IEnumerable<Statistics> Get()
         {
             return Context.StatItems;

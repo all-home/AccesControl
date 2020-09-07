@@ -3,6 +3,7 @@ using WorkersDB.Interfaces;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorkersDB
 {
@@ -50,7 +51,7 @@ namespace WorkersDB
             WorkerCurrent.Surname = item.Surname;
             WorkerCurrent.Patronymic = item.Patronymic;
             WorkerCurrent.Position = item.Position;
-            WorkerCurrent.ImageID = item.ImageID;
+            WorkerCurrent.Image = item.Image;
             WorkerCurrent.Tel = item.Tel;
             WorkerCurrent.TagId = item.TagId;
 
@@ -61,7 +62,8 @@ namespace WorkersDB
 
         public Worker GetWorkerByTagID(int? TagId)
         {
-            return (Worker)context.WorkersItems.Where(a  => a.TagId == TagId);    
+            return context.WorkersItems.
+                FirstOrDefault(m => m.TagId == TagId); 
         }
                 
     }
