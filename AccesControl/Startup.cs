@@ -14,6 +14,7 @@ using FileSave.GRUD;
 using FileSave;
 using BusinessLogic.Interfaces;
 using BusinessLogic.WorkersRepo;
+using BusinessLogic.SearchWorkerByTagID;
 
 namespace AccesControl
 {
@@ -42,6 +43,7 @@ namespace AccesControl
             services.AddScoped<IFilesDB, FilesDB>();
             services.AddScoped<IFileUGD, FiileDelGetUpload>();
             services.AddScoped<IWorkersRepo, Workers>();
+            services.AddScoped<ISearchByTagID, GetWorkerByTag>();
             services.AddRazorPages();
         }
 

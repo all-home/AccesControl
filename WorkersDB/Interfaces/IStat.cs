@@ -3,7 +3,7 @@ using WorkersDB.Models;
 
 namespace WorkersDB.Interfaces
 {
-    interface IStat
+    public interface IStat
     {
         IEnumerable<Statistics> Get();
         Statistics Get(int id);
