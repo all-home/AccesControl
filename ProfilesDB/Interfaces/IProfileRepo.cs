@@ -12,7 +12,6 @@ namespace ProfilesDB.Interfaces
         void Create(Profile item);
         void Update(Profile item);
         Profile Delete(int id);
-        Profile GetWorkerByTagID(int? TagID);
-
+        
     }
 }

@@ -9,6 +9,6 @@ namespace ProfilesDB.Model
         {
             Database.EnsureCreated();
         }
-        public DbSet<Profile> WorkersItems { get; set; }
+        public DbSet<Profile> ProfilesItems { get; set; }
     }
 }

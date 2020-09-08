@@ -4,9 +4,9 @@ namespace ProfilesDB.Model
 {
     public class Profile
     {
-        int id { get; set; }
-        string Name { get; set; }
-        DateTime StartWorking { get; set; }
-        DateTime EndWorking { get; set; }
+        public int id { get; set; }
+        public string Name { get; set; }
+        public DateTime StartWorking { get; set; }
+        public DateTime EndWorking { get; set; }
     }
 }
