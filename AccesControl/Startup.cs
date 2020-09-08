@@ -63,6 +63,7 @@ namespace AccesControl
             app.UseCookiePolicy();
             app.UseRouting();
             app.UseAuthentication();
+                
 
             app.UseEndpoints(endpoints =>
             {

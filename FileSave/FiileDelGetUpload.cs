@@ -39,56 +39,54 @@ namespace FileSave
 
         public string Upload(IFormFile file)
         {
-            string FileName = string.Empty;
-            FileName = GetFilename(FileName);
+            string _patch = null;
+            if (file != null)
+            {
+                var FileName = $"{Guid.NewGuid().ToString()}.jpg";
+                var filePath = Path.Combine(_appEnvironment.ContentRootPath + "/wwwwroot/Files/", FileName);
+                _patch = filePath;
 
-           string patch = _appEnvironment.ContentRootPath + "/Files/" + FileName+".jpg";
-                        
-           using (var fileStream = new FileStream(patch, FileMode.Create))
+                if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                }
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyToAsync(fileStream);
                 }
 
-            FilesDB.Create(new Files { 
-            Patch = patch,
-            Name = FileName
-            });
-            return patch;
+                FilesDB.Create(new Files
+                {
+                    Patch = _appEnvironment.ContentRootPath + "/wwwwroot/Files/" + FileName,
+                    Name = FileName
+                });
+            }
+            return _patch;
         }
 
-        private string GetFilename(String name)
+        private string GetFilename()
         {
-            string chars = "2346789ABCDEFGHJKLMNPQRTUVWXYZabcdefghjkmnpqrtuvwxyz";
-            Random rnd = new Random();
-            string FileName = null;
-            do
-            {
-                name = string.Empty;
-                while (name.Length < 5)
-                {
-                    name += chars.Substring(rnd.Next(chars.Length), 1);
-                }
-
-            }
-            while (CheckName(name));
+           
+           /* while (CheckName(name));
 
             // Check Name
-            bool CheckName(string _FileName)
+            bool CheckName(string name)
             {
                 var Files = FilesDB.Get(); 
                 var FName = Files.
-                    FirstOrDefault(f => f.Name == _FileName);
+                    FirstOrDefault(f => f.Name == name);
                 if (FName == null)
-                {
-                    return false;
-                }
-                else
                 {
                     return true;
                 }
-            }
+                else
+                {
+                    return false;
+                }
+            }.*/
 
-            return FileName;
+            return ";;";
         }
 
         
