@@ -6,23 +6,25 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WorkersDB;
 using WorkersDB.Interfaces;
+using BusinessLogic.Interfaces;
+using BusinessLogic.Models;
 
 namespace AccesControl.Controllers
 {
     public class WorkersController : Controller
     {
-        private readonly IGRUDWork WorkRepo;
+        IWorkersRepo repo;
 
-        public WorkersController(IGRUDWork gRUDWork)
+        public WorkersController(IWorkersRepo repo)
         {
-            WorkRepo = gRUDWork;
+            this.repo = repo;
         }
 
 
         // GET: WorkersController
         public ActionResult Index()
         {
-            return View(WorkRepo.Get());
+            return View(repo.Get());
         }
 
         // GET: WorkersController/Details/5
@@ -40,10 +42,12 @@ namespace AccesControl.Controllers
         // POST: WorkersController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create([Bind("Name, Surname, Patronymic, Tel, Position,TagId,Image")] WorkerModel worker)
         {
+           
             try
             {
+                repo.Create(worker);
                 return RedirectToAction(nameof(Index));
             }
             catch

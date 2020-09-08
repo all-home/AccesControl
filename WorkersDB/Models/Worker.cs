@@ -13,7 +13,7 @@ namespace WorkersDB.Models
         public string Patronymic { get; set; }
         public string Tel { get; set; }
         public string Position { get; set; }
-        public int ImageID { get; set; }
+        public string Image { get; set; }
     }
 
     //class contain Person stat

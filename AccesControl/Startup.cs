@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +9,11 @@ using Microsoft.Extensions.Hosting;
 using FileSave.Models;
 using WorkersDB.Interfaces;
 using WorkersDB;
+using FileSave.interfaces;
+using FileSave.GRUD;
+using FileSave;
+using BusinessLogic.Interfaces;
+using BusinessLogic.WorkersRepo;
 
 namespace AccesControl
 {
@@ -38,7 +38,10 @@ namespace AccesControl
             });
             services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            services.AddScoped<IGRUDWork, WorkersRepository>();
+            services.AddScoped<IGRUDWorker, WorkersRepository>();
+            services.AddScoped<IFilesDB, FilesDB>();
+            services.AddScoped<IFileUGD, FiileDelGetUpload>();
+            services.AddScoped<IWorkersRepo, Workers>();
             services.AddRazorPages();
         }
 
@@ -60,6 +63,7 @@ namespace AccesControl
             app.UseCookiePolicy();
             app.UseRouting();
             app.UseAuthentication();
+                
 
             app.UseEndpoints(endpoints =>
             {

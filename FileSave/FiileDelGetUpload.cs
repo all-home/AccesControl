@@ -1,21 +1,21 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using FileSave.GRUD;
+using System.Runtime.CompilerServices;
 using FileSave.interfaces;
 using FileSave.Models;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace FileSave
 {
     public class FiileDelGetUpload : IFileUGD
     {
-        FilesDB FilesDB;
+        IFilesDB FilesDB;
         IHostingEnvironment _appEnvironment;
-        public FiileDelGetUpload(IHostingEnvironment appEnvironment)
+        public FiileDelGetUpload(IHostingEnvironment appEnvironment, IFilesDB _FilesDB)
         {
+            FilesDB = _FilesDB;
             _appEnvironment = appEnvironment;
         }
 
@@ -37,54 +37,58 @@ namespace FileSave
             return null;
         }
 
-        public int? Upload(IFormFile file)
+        public string Upload(IFormFile file)
         {
-           string FileName = GetFilename();
-           int? id = null;
-           string patch = _appEnvironment.ContentRootPath + "/Files/" + FileName;
-
-            try
+            string _patch = null;
+            if (file != null)
             {
-                using (var fileStream = new FileStream(patch, FileMode.Create))
+                var FileName = $"{Guid.NewGuid().ToString()}.jpg";
+                var filePath = Path.Combine(_appEnvironment.ContentRootPath + "/wwwwroot/Files/", FileName);
+                _patch = filePath;
+
+                if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                }
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
                     file.CopyToAsync(fileStream);
                 }
-            }
-            catch
-            {             
-            
-            }
 
-            return id;
+                FilesDB.Create(new Files
+                {
+                    Patch = _appEnvironment.ContentRootPath + "/wwwwroot/Files/" + FileName,
+                    Name = FileName
+                });
+            }
+            return _patch;
         }
 
         private string GetFilename()
         {
-            string FileName = null;
-            do
-            {
-                FileName = String.Format("%s.%s", RandomStringUtils.RandomStringUtils.RandomAlphanumeric(8));
-
-            }
-            while (CheckName(FileName));
+           
+           /* while (CheckName(name));
 
             // Check Name
-            bool CheckName(string _FileName)
+            bool CheckName(string name)
             {
                 var Files = FilesDB.Get(); 
                 var FName = Files.
-                    FirstOrDefault(f => f.Name == _FileName);
+                    FirstOrDefault(f => f.Name == name);
                 if (FName == null)
-                {
-                    return false;
-                }
-                else
                 {
                     return true;
                 }
-            }
+                else
+                {
+                    return false;
+                }
+            }.*/
 
-            return FileName;
+            return ";;";
         }
+
+        
     }
 }

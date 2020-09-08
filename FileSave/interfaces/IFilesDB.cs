@@ -5,7 +5,7 @@ using FileSave.Models;
 
 namespace FileSave.interfaces
 {
-    interface IFilesDB
+    public interface IFilesDB
     {
         IEnumerable<Files> Get();
         Files Get(int id);

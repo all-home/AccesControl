@@ -2,10 +2,12 @@
 using WorkersDB.Interfaces;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace WorkersDB
 {
-    public class WorkersRepository : IGRUDWork
+    public class WorkersRepository : IGRUDWorker
     {
         private WorkerContext context;
 
@@ -49,7 +51,7 @@ namespace WorkersDB
             WorkerCurrent.Surname = item.Surname;
             WorkerCurrent.Patronymic = item.Patronymic;
             WorkerCurrent.Position = item.Position;
-            WorkerCurrent.ImageID = item.ImageID;
+            WorkerCurrent.Image = item.Image;
             WorkerCurrent.Tel = item.Tel;
             WorkerCurrent.TagId = item.TagId;
 
@@ -57,5 +59,12 @@ namespace WorkersDB
             context.SaveChanges();
 
         }
+
+        public Worker GetWorkerByTagID(int? TagId)
+        {
+            return context.WorkersItems.
+                FirstOrDefault(m => m.TagId == TagId); 
+        }
+                
     }
 }
