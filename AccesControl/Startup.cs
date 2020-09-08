@@ -15,6 +15,8 @@ using FileSave;
 using BusinessLogic.Interfaces;
 using BusinessLogic.WorkersRepo;
 using BusinessLogic.SearchWorkerByTagID;
+using ProfilesDB.Interfaces;
+using ProfilesDB;
 
 namespace AccesControl
 {
@@ -44,6 +46,8 @@ namespace AccesControl
             services.AddScoped<IFileUGD, FiileDelGetUpload>();
             services.AddScoped<IWorkersRepo, Workers>();
             services.AddScoped<ISearchByTagID, GetWorkerByTag>();
+            services.AddScoped<IProfileRepo, ProfilesRepo>();
+            services.AddScoped<IStat, SatisticsRepository>();
             services.AddRazorPages();
         }
 

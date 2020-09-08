@@ -6,7 +6,7 @@ using WorkersDB.Models;
 
 namespace WorkersDB
 {
-    class SatisticsRepository : IStat
+    public class SatisticsRepository : IStat
     {
         private WorkerContext Context;
 

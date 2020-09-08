@@ -5,7 +5,7 @@ using ProfilesDB.Model;
 
 namespace ProfilesDB
 {
-    class ProfilesRepo : IProfileRepo
+    public class ProfilesRepo : IProfileRepo
     {
         ProfileContext context;
         public ProfilesRepo(ProfileContext _context)
