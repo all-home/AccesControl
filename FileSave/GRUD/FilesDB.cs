@@ -9,6 +9,11 @@ namespace FileSave.GRUD
     public class FilesDB : IFilesDB
     {
         private readonly FileContext Context;
+
+        public FilesDB(FileContext _context)
+        {
+            Context = _context;
+        }
         public void Create(Files file)
         {
             Context.FileItems.Add(file);

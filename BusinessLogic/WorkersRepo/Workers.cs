@@ -42,7 +42,7 @@ namespace BusinessLogic.WorkersRepo
                     Tel = item.Tel,
                     TagId = item.TagId ?? default(int),
                     Position = item.Position,
-                    Image = "llll"
+                    Image = File.Upload(item.Image)
 
                 };
                 WorkRepo.Create(NewWorker);

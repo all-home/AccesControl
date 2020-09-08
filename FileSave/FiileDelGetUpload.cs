@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using FileSave.interfaces;
 using FileSave.Models;
 using Microsoft.AspNetCore.Http;
@@ -38,8 +39,10 @@ namespace FileSave
 
         public string Upload(IFormFile file)
         {
-           string FileName = GetFilename();
-           string patch = _appEnvironment.ContentRootPath + "/Files/" + FileName;
+            string FileName = string.Empty;
+            FileName = GetFilename(FileName);
+
+           string patch = _appEnvironment.ContentRootPath + "/Files/" + FileName+".jpg";
                         
            using (var fileStream = new FileStream(patch, FileMode.Create))
                 {
@@ -53,15 +56,21 @@ namespace FileSave
             return patch;
         }
 
-        private string GetFilename()
+        private string GetFilename(String name)
         {
+            string chars = "2346789ABCDEFGHJKLMNPQRTUVWXYZabcdefghjkmnpqrtuvwxyz";
+            Random rnd = new Random();
             string FileName = null;
             do
             {
-                FileName = String.Format("%s.%s", RandomStringUtils.RandomStringUtils.RandomAlphanumeric(8));
+                name = string.Empty;
+                while (name.Length < 5)
+                {
+                    name += chars.Substring(rnd.Next(chars.Length), 1);
+                }
 
             }
-            while (CheckName(FileName));
+            while (CheckName(name));
 
             // Check Name
             bool CheckName(string _FileName)
@@ -81,5 +90,7 @@ namespace FileSave
 
             return FileName;
         }
+
+        
     }
 }
