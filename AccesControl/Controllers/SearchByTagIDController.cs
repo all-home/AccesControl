@@ -11,7 +11,7 @@ namespace AccesControl.Controllers
     public class SearchByTagIDController : Controller
     {
         ISearchByTagID WorkerByTagID;
-        SearchByTagIDController(ISearchByTagID searchByTagID)
+       public SearchByTagIDController(ISearchByTagID searchByTagID)
         {
             WorkerByTagID = searchByTagID;        
         }
@@ -24,12 +24,13 @@ namespace AccesControl.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(int? TagID)
         {
-            try
+           try
+           
             {
                 Worker CWorker = WorkerByTagID.GetWorker(TagID);
                 if (CWorker != null)
                 {
-                    return View("_index", CWorker);
+                    return View();
                 }
                 else
                 {

@@ -16,6 +16,7 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.WorkersRepo;
 using BusinessLogic.SearchWorkerByTagID;
 using ProfilesDB.Interfaces;
+using ProfilesDB.Model;
 using ProfilesDB;
 
 namespace AccesControl
@@ -40,7 +41,9 @@ namespace AccesControl
                 
             });
             services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<StatisticsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ProfileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<IGRUDWorker, WorkersRepository>();
             services.AddScoped<IFilesDB, FilesDB>();
             services.AddScoped<IFileUGD, FiileDelGetUpload>();

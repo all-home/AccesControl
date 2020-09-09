@@ -8,9 +8,9 @@ namespace WorkersDB
 {
     public class SatisticsRepository : IStat
     {
-        private WorkerContext Context;
+        private StatisticsContext Context;
 
-        public SatisticsRepository(WorkerContext _context)
+        public SatisticsRepository(StatisticsContext _context)
         {
             Context = _context;
         }

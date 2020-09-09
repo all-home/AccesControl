@@ -7,7 +7,7 @@ namespace ProfilesDB
 {
     public class ProfilesRepo : IProfileRepo
     {
-        ProfileContext context;
+        private readonly ProfileContext context;
         public ProfilesRepo(ProfileContext _context)
         {
             context = _context;
