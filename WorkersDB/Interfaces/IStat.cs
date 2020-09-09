@@ -10,5 +10,7 @@ namespace WorkersDB.Interfaces
         void Create(Statistics item);
         Statistics Delete(int id);
 
+        void Update(Statistics statistics);
+
     }
 }

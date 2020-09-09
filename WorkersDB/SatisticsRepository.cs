@@ -43,5 +43,19 @@ namespace WorkersDB
 
             return Stat;
         }
+
+        public void Update(Statistics statistics)
+        {
+            Statistics _statistics = Get(statistics.id);
+
+            _statistics.WorkerID = statistics.WorkerID;
+            _statistics.StartWork = statistics.StartWork;
+            _statistics.Latetime = statistics.Latetime;
+            _statistics.Late = statistics.Late;
+            _statistics.EndWork = statistics.EndWork;
+           
+            Context.StatItems.Update(_statistics);
+            Context.SaveChanges();
+        }
     }
 }

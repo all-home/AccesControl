@@ -18,6 +18,7 @@ using BusinessLogic.SearchWorkerByTagID;
 using ProfilesDB.Interfaces;
 using ProfilesDB.Model;
 using ProfilesDB;
+using BusinessLogic.Profiles;
 
 namespace AccesControl
 {
@@ -51,6 +52,7 @@ namespace AccesControl
             services.AddScoped<ISearchByTagID, GetWorkerByTag>();
             services.AddScoped<IProfileRepo, ProfilesRepo>();
             services.AddScoped<IStat, SatisticsRepository>();
+            services.AddScoped<IProfiles, ProfileRepo>();
             services.AddRazorPages();
         }
 
