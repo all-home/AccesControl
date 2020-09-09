@@ -45,6 +45,7 @@ namespace ProfilesDB
 
             profileCurrent.Name = item.Name;
             profileCurrent.StartWorking = item.StartWorking;
+            profileCurrent.Active = item.Active;
             profileCurrent.EndWorking = item.EndWorking;
             
             context.ProfilesItems.Update(profileCurrent);
