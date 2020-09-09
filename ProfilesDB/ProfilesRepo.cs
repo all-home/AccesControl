@@ -5,9 +5,9 @@ using ProfilesDB.Model;
 
 namespace ProfilesDB
 {
-    class ProfilesRepo : IProfileRepo
+    public class ProfilesRepo : IProfileRepo
     {
-        ProfileContext context;
+        private readonly ProfileContext context;
         public ProfilesRepo(ProfileContext _context)
         {
             context = _context;
@@ -45,6 +45,7 @@ namespace ProfilesDB
 
             profileCurrent.Name = item.Name;
             profileCurrent.StartWorking = item.StartWorking;
+            profileCurrent.Active = item.Active;
             profileCurrent.EndWorking = item.EndWorking;
             
             context.ProfilesItems.Update(profileCurrent);

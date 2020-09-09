@@ -14,6 +14,11 @@ using FileSave.GRUD;
 using FileSave;
 using BusinessLogic.Interfaces;
 using BusinessLogic.WorkersRepo;
+using BusinessLogic.SearchWorkerByTagID;
+using ProfilesDB.Interfaces;
+using ProfilesDB.Model;
+using ProfilesDB;
+using BusinessLogic.Profiles;
 
 namespace AccesControl
 {
@@ -37,11 +42,17 @@ namespace AccesControl
                 
             });
             services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<StatisticsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<ProfileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<IGRUDWorker, WorkersRepository>();
             services.AddScoped<IFilesDB, FilesDB>();
             services.AddScoped<IFileUGD, FiileDelGetUpload>();
             services.AddScoped<IWorkersRepo, Workers>();
+            services.AddScoped<ISearchByTagID, GetWorkerByTag>();
+            services.AddScoped<IProfileRepo, ProfilesRepo>();
+            services.AddScoped<IStat, SatisticsRepository>();
+            services.AddScoped<IProfiles, ProfileRepo>();
             services.AddRazorPages();
         }
 

@@ -10,7 +10,6 @@ namespace WorkersDB.Models
             Database.EnsureCreated();
             }
         public DbSet<Worker> WorkersItems { get; set; }
-        public DbSet<Statistics> StatItems { get; set; }
-
+        
     }
 }

@@ -8,5 +8,6 @@ namespace ProfilesDB.Model
         public string Name { get; set; }
         public DateTime StartWorking { get; set; }
         public DateTime EndWorking { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -6,11 +6,11 @@ using WorkersDB.Models;
 
 namespace WorkersDB
 {
-    class SatisticsRepository : IStat
+    public class SatisticsRepository : IStat
     {
-        private WorkerContext Context;
+        private StatisticsContext Context;
 
-        public SatisticsRepository(WorkerContext _context)
+        public SatisticsRepository(StatisticsContext _context)
         {
             Context = _context;
         }
@@ -42,6 +42,20 @@ namespace WorkersDB
             }
 
             return Stat;
+        }
+
+        public void Update(Statistics statistics)
+        {
+            Statistics _statistics = Get(statistics.id);
+
+            _statistics.WorkerID = statistics.WorkerID;
+            _statistics.StartWork = statistics.StartWork;
+            _statistics.Latetime = statistics.Latetime;
+            _statistics.Late = statistics.Late;
+            _statistics.EndWork = statistics.EndWork;
+           
+            Context.StatItems.Update(_statistics);
+            Context.SaveChanges();
         }
     }
 }
