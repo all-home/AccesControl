@@ -17,5 +17,14 @@ body {
     width: 100%;
 }
 
+.HomeCardsText {
+    font-weight: bolder;
+    font-size: medium;
+    color: black;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
 
 

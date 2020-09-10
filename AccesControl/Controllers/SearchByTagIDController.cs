@@ -22,7 +22,7 @@ namespace AccesControl.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(int? TagID)
+        public ActionResult Search(int? TagID)
         {
            try
            
