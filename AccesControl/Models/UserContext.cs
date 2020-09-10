@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace LOP.Models
+namespace AccesControl.Models
 {
     public class UserContext : DbContext
     {

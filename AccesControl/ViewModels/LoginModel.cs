@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LOP.ViewModels
+namespace AccesControl.ViewModels
 {
     public class LoginModel
     {

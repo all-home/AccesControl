@@ -19,6 +19,7 @@ using ProfilesDB.Interfaces;
 using ProfilesDB.Model;
 using ProfilesDB;
 using BusinessLogic.Profiles;
+using AccesControl.Models;
 
 namespace AccesControl
 {
@@ -45,6 +46,7 @@ namespace AccesControl
             services.AddDbContext<StatisticsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<ProfileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<IGRUDWorker, WorkersRepository>();
             services.AddScoped<IFilesDB, FilesDB>();
             services.AddScoped<IFileUGD, FiileDelGetUpload>();

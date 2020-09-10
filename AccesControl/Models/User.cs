@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LOP.Models
+namespace AccesControl.Models
 {
     public class User
     {
