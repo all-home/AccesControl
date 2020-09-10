@@ -8,6 +8,7 @@ using WorkersDB;
 using WorkersDB.Interfaces;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Models;
+using WorkersDB.Models;
 
 namespace AccesControl.Controllers
 {
@@ -30,7 +31,8 @@ namespace AccesControl.Controllers
         // GET: WorkersController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Worker worker = repo.Get(id);
+            return View(worker);
         }
 
         // GET: WorkersController/Create
@@ -59,16 +61,18 @@ namespace AccesControl.Controllers
         // GET: WorkersController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Worker worker = repo.Get(id);
+            return View(worker);
         }
 
         // POST: WorkersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit([Bind("id, Name, Surname, Patronymic, Tel, Position,TagId,Image")] WorkerModel worker)
         {
             try
             {
+                repo.Update(worker);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -90,6 +94,7 @@ namespace AccesControl.Controllers
         {
             try
             {
+                repo.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

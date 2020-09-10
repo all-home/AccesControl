@@ -30,7 +30,7 @@ namespace AccesControl.Controllers
                 Worker CWorker = WorkerByTagID.GetWorker(TagID);
                 if (CWorker != null)
                 {
-                    return View();
+                    return View(CWorker);
                 }
                 else
                 {
