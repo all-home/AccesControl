@@ -20,6 +20,8 @@ using ProfilesDB.Model;
 using ProfilesDB;
 using BusinessLogic.Profiles;
 using AccesControl.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 
 namespace AccesControl
 {
@@ -35,13 +37,13 @@ namespace AccesControl
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
+           /* services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
                 
-            });
+            });*/
             services.AddDbContext<WorkerContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<StatisticsContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddDbContext<FileContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
@@ -56,6 +58,14 @@ namespace AccesControl
             services.AddScoped<IStat, SatisticsRepository>();
             services.AddScoped<IProfiles, ProfileRepo>();
             services.AddRazorPages();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+              .AddCookie(options => //CookieAuthenticationOptions
+               {
+                  options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+              });
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,7 +86,8 @@ namespace AccesControl
             app.UseCookiePolicy();
             app.UseRouting();
             app.UseAuthentication();
-                
+            //app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
