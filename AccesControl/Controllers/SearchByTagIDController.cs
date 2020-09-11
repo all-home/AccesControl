@@ -34,12 +34,12 @@ namespace AccesControl.Controllers
                 }
                 else
                 {
-                    return View(); 
+                    return View("index"); 
                 }
             }
             catch
             {
-                return View();
+                return View("Index");
             }
         }
     }

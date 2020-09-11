@@ -1,14 +1,10 @@
-﻿@{
-    ViewData["Title"] = "Дом";
-}
-
-<div class="container">
-    <div class="row">
-        <div class="center-block">
+﻿
+<div class="container" style="margin-top: 5% ">
+            <div class="center-block">
            
-            <div class="container" style="margin-top: 5%">
-                <div class="col-lg-4">
-                    <div class="card border-primary mb-3" style="width: 18rem">
+            <div class="container row" >
+                <div class="col-lg-4 col-sm-4">
+                    <div class="card" style="width: 18rem">
                         <div class="card-body">
                             <a asp-controller="SearchByTagID" asp-action="Index">
                                 <img width="150" class="card-img-top" src="~/images/icons/019-job search.svg"><img>
@@ -18,7 +14,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-4" >
                     <div class="card" style="width: 18rem">
                         <div class="card-body">
                             <a asp-controller="Workers" asp-action="Index">
@@ -30,7 +26,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-sm-4">
                     <div class="card" style="width: 18rem">
                         <div class="card-body">
                             <a asp-controller="Workers" asp-action="Create">
@@ -43,8 +39,8 @@
 
                 </div>
             </div>
-
+            
+            </div>
 </div>
-    </div>
+    
 
-</div>

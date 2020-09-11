@@ -35,54 +35,58 @@ namespace BusinessLogic.SearchWorkerByTagID
         
         private void addStatResUser(Worker worker)
         {
-            var WorkerDayStat = CurentDayEnterice(worker.id);
-
-            if (WorkerDayStat == null)
+            if (worker != null)
             {
-                Profile cprofile = profileRepo.GetActive();
-                DateTime dateTime = DateTime.Now;
-                bool Late = LateWorker(dateTime);
-                string LateTime = null;
-               
-                if (Late)
-                {
-                    LateTime = LateTimeCalc(dateTime);
-                }
+                var WorkerDayStat = CurentDayEnterice(worker.id);
 
-                statRepo.Create(new Statistics { 
-                
-                        StartWork = dateTime,
-                        Late = Late,
-                        Latetime = LateTime,
-                        WorkerID = worker.id
-                
-                });;
-
-            }
-            else
-            {
-                //add owertime !?
-                Statistics statistics = WorkerDayStat.FirstOrDefault(a => a.EndWork == null);
-
-                if (statistics != null)
+                if (WorkerDayStat == null)
                 {
-                    statistics.EndWork = DateTime.Now;
-                    statRepo.Update(statistics);
-                }
-                else
-                {
+                    Profile cprofile = profileRepo.GetActive();
+                    DateTime dateTime = DateTime.Now;
+                    bool Late = LateWorker(dateTime);
+                    string LateTime = null;
+
+                    if (Late)
+                    {
+                        LateTime = LateTimeCalc(dateTime);
+                    }
+
                     statRepo.Create(new Statistics
                     {
 
-                        StartWork = DateTime.Now,
-                        Late = false,
-                        Latetime = null,
+                        StartWork = dateTime,
+                        Late = Late,
+                        Latetime = LateTime,
                         WorkerID = worker.id
 
                     }); ;
 
                 }
-            
+                else
+                {
+                    //add owertime !?
+                    Statistics statistics = WorkerDayStat.FirstOrDefault(a => a.EndWork == null);
+
+                    if (statistics != null)
+                    {
+                        statistics.EndWork = DateTime.Now;
+                        statRepo.Update(statistics);
+                    }
+                    else
+                    {
+                        statRepo.Create(new Statistics
+                        {
+
+                            StartWork = DateTime.Now,
+                            Late = false,
+                            Latetime = null,
+                            WorkerID = worker.id
+
+                        }); ;
+
+                    }
+
+                }
             }
         
         }

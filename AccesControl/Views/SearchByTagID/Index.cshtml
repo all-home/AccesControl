@@ -1,11 +1,6 @@
 ﻿@model WorkersDB.Models.Worker
 
-@{
-    ViewData["Title"] = "Поиск по метке";
-}
-
-<h2>Поиск по метке</h2>
-
+<div class="container row">
 
 <form asp-action="Search">
 
@@ -13,15 +8,14 @@
         <label class="control-label">
             Приложите метку к счиывателю
             <input autofocus type="password" asp-for="TagId" />
-        </label>
+        </label>    
     </div>
-
-    <div class="form-control">
+    <div class="form-group">
         <input type="submit" value="Поиск" />
     </div>
-
-
 </form>
+
+</div>
 
 
 
