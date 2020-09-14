@@ -11,7 +11,7 @@ namespace AccesControl.Controllers
 {
     public class HomeController : Controller
     {
-       //[Authorize(Roles = "admin, user")]
+       [Authorize(Roles = "admin, user")]
         public IActionResult Index()
         {
             return View();

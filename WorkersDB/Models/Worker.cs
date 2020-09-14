@@ -6,6 +6,7 @@ namespace WorkersDB.Models
 {
   public class Worker
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         public int TagId { get; set; }
         public string Name { get; set; }
@@ -16,16 +17,6 @@ namespace WorkersDB.Models
         public string Image { get; set; }
     }
 
-    //class contain Person stat
-    public class Statistics
-    {
-       public int id { get; set; }
-        public DateTime StartWork { get; set; }
-        public DateTime EndWork { get; set; }
-        public string Latetime { get; set; }
-        public bool Late { get; set; }
-        public int WorkerID { get; set; }
-
-    }
+   
 
 }

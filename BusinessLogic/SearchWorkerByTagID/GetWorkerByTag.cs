@@ -5,6 +5,8 @@ using WorkersDB.Models;
 using BusinessLogic.Interfaces;
 using System.Linq;
 using ProfilesDB.Model;
+using System.Collections;
+using System.Data.SqlTypes;
 
 namespace BusinessLogic.SearchWorkerByTagID
 {
@@ -13,6 +15,7 @@ namespace BusinessLogic.SearchWorkerByTagID
         IStat statRepo;
         IProfiles profileRepo;
         IGRUDWorker workerRepo;
+
         public GetWorkerByTag(IStat _statRepo, IProfiles _profileRepo, IGRUDWorker _workerRepo)
         {
             statRepo = _statRepo;
@@ -22,24 +25,23 @@ namespace BusinessLogic.SearchWorkerByTagID
 
         public Worker GetWorker(int? TagID)
         {
-            Worker ResWoker = null;
-
-            if (TagID != null)
+            Worker ResWoker = workerRepo.GetWorkerByTagID(TagID);
+                       
+            try
             {
-                 ResWoker = workerRepo.GetWorkerByTagID(TagID);
+                addStatResUser(ResWoker);
             }
-            addStatResUser(ResWoker);
+            catch { }
             return ResWoker;
         }
 
-        
+
         private void addStatResUser(Worker worker)
         {
-            if (worker != null)
-            {
+            
                 var WorkerDayStat = CurentDayEnterice(worker.id);
 
-                if (WorkerDayStat == null)
+                if (WorkerDayStat == null || !WorkerDayStat.Any())
                 {
                     Profile cprofile = profileRepo.GetActive();
                     DateTime dateTime = DateTime.Now;
@@ -87,34 +89,31 @@ namespace BusinessLogic.SearchWorkerByTagID
                     }
 
                 }
-            }
-        
+            
         }
 
         private IEnumerable<Statistics> CurentDayEnterice(int id)
         {
             var Stat = statRepo.Get();
+            IEnumerable<Statistics> dayStat = null;
 
-            var dayStat = Stat.Where(a =>
-                a.StartWork.Date.ToString("dd.MM.yyy") == DateTime.Now.ToString("dd.MM.yyy") && a.WorkerID == id);
+            if (Stat != null || Stat.Any())
+            {
+                dayStat = Stat.Where(a =>
+                   a.StartWork.Date.ToString("dd.MM.yyy") == DateTime.Now.ToString("dd.MM.yyy") && a.WorkerID == id);
+            }
 
-            if (dayStat != null)
-            {
-                return dayStat;
-            }
-            else
-            {
-                return null;
-            }
+            return dayStat;
+
         }
 
         private bool LateWorker(DateTime date)
         {
             Profile profile = profileRepo.GetActive();
-            
+
             if (profile != null)
             {
-               
+
                 if (profile.StartWorking.Hour > date.Hour &&
                         profile.StartWorking.Minute > date.Minute)
                 {
@@ -122,26 +121,31 @@ namespace BusinessLogic.SearchWorkerByTagID
                 }
                 else
                 {
-                    return false;   
+                    return false;
                 }
-            
+
             }
             else
             {
                 return false;
             }
-        
+
         }
 
         private string LateTimeCalc(DateTime date)
         {
             Profile profile = profileRepo.GetActive();
-        
+
             int hlate = date.Hour - profile.StartWorking.Hour;
             int mlate = date.Minute - profile.StartWorking.Minute;
 
             return hlate.ToString() + ":" + mlate.ToString();
-        
+
         }
+             
+
     }
-}
+
+   
+}   
+ 

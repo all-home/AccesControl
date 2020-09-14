@@ -1,21 +1,26 @@
 ﻿@model WorkersDB.Models.Worker
+div class="container">
+<div class="raw">
+    <div class="col-md-6 col-md-offset-4 center-top">
 
-<div class="container row">
+        <form asp-action="Search" asp-anti-forgery="true">
+            <div class="card" style="width: 18rem;">
+               <div class="card-body">
+                    <div class="form-group">
+                        <td>Приложите метку</td>
+                        <input autofocus type="password" asp-for="TagId" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Поиск</button>
+                    </div>
 
-<form asp-action="Search">
+                </div>
+            </div>
+        </form>
 
-    <div class="form-group">
-        <label class="control-label">
-            Приложите метку к счиывателю
-            <input autofocus type="password" asp-for="TagId" />
-        </label>    
     </div>
-    <div class="form-group">
-        <input type="submit" value="Поиск" />
-    </div>
-</form>
-
 </div>
+
 
 
 

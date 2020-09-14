@@ -1,75 +1,47 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogic.Interfaces;
-using BusinessLogic.Models;
-using WorkersDB.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace AccesControl.Controllers
 {
-    
-    public class WorkersController : Controller
+    public class ProfileController : Controller
     {
-        IWorkersRepo repo;
+        IProfiles profile;
 
-        public WorkersController(IWorkersRepo repo)
+        public ProfileController(IProfiles profile)
         {
-            this.repo = repo;
+            this.profile = profile;
         }
 
-
-        // GET: WorkersController
-        
+        // GET: ProfileController
         public ActionResult Index()
         {
-            return View(repo.Get());
+            return View(profile.Get());
         }
 
-        // GET: WorkersController/Details/5
+        // GET: ProfileController/Details/5
         public ActionResult Details(int id)
         {
-            Worker worker = repo.Get(id);
-            return View(worker);
+            return View();
         }
 
-        // GET: WorkersController/Create
+        // GET: ProfileController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: WorkersController/Create
+        // POST: ProfileController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind("Name, Surname, Patronymic, Tel, Position,TagId,Image")] WorkerModel worker)
-        {
-           
-            try
-            {
-                repo.Create(worker);
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View(nameof(Create));
-            }
-        }
-
-        // GET: WorkersController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            Worker worker = repo.Get(id);
-            return View(worker);
-        }
-
-        // POST: WorkersController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind("id, Name, Surname, Patronymic, Tel, Position,TagId,Image")] WorkerModel worker)
+        public ActionResult Create(IFormCollection collection)
         {
             try
             {
-                repo.Update(worker);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -78,20 +50,40 @@ namespace AccesControl.Controllers
             }
         }
 
-        // GET: WorkersController/Delete/5
+        // GET: ProfileController/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: ProfileController/Edit/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, IFormCollection collection)
+        {
+            try
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ProfileController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: WorkersController/Delete/5
+        // POST: ProfileController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
             {
-                repo.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

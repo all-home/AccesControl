@@ -62,8 +62,9 @@ namespace AccesControl
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
               .AddCookie(options => //CookieAuthenticationOptions
                {
-                  options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-              });
+                   options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                   options.AccessDeniedPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+               });
 
             
         }
@@ -81,13 +82,13 @@ namespace AccesControl
                 app.UseHsts();
             }
 
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseRouting();
-            app.UseAuthentication();
-            //app.UseAuthorization();
-
+                        
 
             app.UseEndpoints(endpoints =>
             {
