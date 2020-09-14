@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WorkersDB.Models.Statistics>
+﻿@model IEnumerable<AccesControl.ViewModels.StatModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,13 +14,19 @@
                 @Html.DisplayNameFor(model => model.EndWork)
             </th>
             <th>
-                <!--  Html.DisplayNameFor(model => model.Latetime)-->
+                @Html.DisplayNameFor(model => model.Latetime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Late)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.WorkerID)
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Отчество
             </th>
             <th></th>
         </tr>
@@ -35,15 +41,21 @@
                 @Html.DisplayFor(modelItem => item.EndWork)
             </td>
             <td>
-                <!--  Html.DisplayFor(modelItem => item.Latetime) -->
+                @Html.DisplayFor(modelItem => item.Latetime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Late)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.WorkerID)
+                @Html.DisplayFor(modelItem => item.Surname)
             </td>
-            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patronymic)
+            </td>
+
         </tr>
 }
     </tbody>
