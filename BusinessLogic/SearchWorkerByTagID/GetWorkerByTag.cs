@@ -66,8 +66,9 @@ namespace BusinessLogic.SearchWorkerByTagID
                 }
                 else
                 {
-                    //add owertime !?
-                    Statistics statistics = WorkerDayStat.FirstOrDefault(a => a.EndWork == null);
+                //add owertime !?
+                       DateTime emptyDate = new DateTime(0001, 01, 01, 00, 00, 00);
+                    Statistics statistics = WorkerDayStat.FirstOrDefault(a => a.EndWork == emptyDate);
 
                     if (statistics != null)
                     {

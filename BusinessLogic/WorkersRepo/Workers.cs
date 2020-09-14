@@ -52,6 +52,7 @@ namespace BusinessLogic.WorkersRepo
         public void Delete(int id)
         {
             WorkRepo.Delete(id);
+
         }
 
         public void Update(WorkerModel item)
