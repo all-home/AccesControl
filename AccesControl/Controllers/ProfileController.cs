@@ -5,28 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using BusinessLogic.Interfaces;
+using ProfilesDB.Model;
 
 namespace AccesControl.Controllers
 {
     public class ProfileController : Controller
     {
-        IProfiles profile;
+        IProfiles profileRepo;
 
         public ProfileController(IProfiles profile)
         {
-            this.profile = profile;
+            profileRepo = profile;
         }
 
         // GET: ProfileController
         public ActionResult Index()
         {
-            return View(profile.Get());
+            return View(profileRepo.Get());
         }
 
         // GET: ProfileController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(profileRepo.Get(id));
         }
 
         // GET: ProfileController/Create
@@ -38,10 +39,11 @@ namespace AccesControl.Controllers
         // POST: ProfileController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Profile profile)
         {
             try
             {
+                profileRepo.Create(profile);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -53,16 +55,17 @@ namespace AccesControl.Controllers
         // GET: ProfileController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(profileRepo.Get(id));
         }
 
         // POST: ProfileController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Profile profile)
         {
             try
             {
+                profileRepo.Update(profile);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,7 +77,7 @@ namespace AccesControl.Controllers
         // GET: ProfileController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(profileRepo.Get(id));
         }
 
         // POST: ProfileController/Delete/5
@@ -84,6 +87,7 @@ namespace AccesControl.Controllers
         {
             try
             {
+                profileRepo.Remove(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

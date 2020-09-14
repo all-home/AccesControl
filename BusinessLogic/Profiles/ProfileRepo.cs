@@ -25,9 +25,13 @@ namespace BusinessLogic.Profiles
             else
             {
                 Profile aprofile = GetActive();
-                aprofile.Active = false;
-                Update(aprofile);
-                profile.Create(_profile);
+                if (aprofile != null)
+                {
+                    aprofile.Active = false;
+                    Update(aprofile);
+                }
+                    profile.Create(_profile);
+                
             }
             
         }
@@ -63,8 +67,11 @@ namespace BusinessLogic.Profiles
             else
             {
                 Profile aprofile = GetActive();
-                aprofile.Active = false;
-                profile.Update(aprofile);
+                if (aprofile != null)
+                {
+                    aprofile.Active = false;
+                    profile.Update(aprofile);
+                }
                 profile.Update(_profile);
             }
            
