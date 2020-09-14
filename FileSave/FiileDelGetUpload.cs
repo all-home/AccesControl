@@ -43,7 +43,7 @@ namespace FileSave
             if (file != null)
             {
                 var FileName = $"{Guid.NewGuid().ToString()}.jpg";
-                var filePath = Path.Combine(_appEnvironment.ContentRootPath + "/wwwwroot/Files/", FileName);
+                var filePath = Path.Combine(_appEnvironment.ContentRootPath + "\\wwwroot\\_files\\", FileName);
                 _patch = filePath;
 
                 if (!Directory.Exists(Path.GetDirectoryName(filePath)))
@@ -56,7 +56,7 @@ namespace FileSave
                     file.CopyToAsync(fileStream);
                 }
 
-                FilesDB.Create(new Files
+               FilesDB.Create(new Files
                 {
                     Patch = _appEnvironment.ContentRootPath + "/wwwwroot/Files/" + FileName,
                     Name = FileName
@@ -65,30 +65,6 @@ namespace FileSave
             return _patch;
         }
 
-        private string GetFilename()
-        {
-           
-           /* while (CheckName(name));
-
-            // Check Name
-            bool CheckName(string name)
-            {
-                var Files = FilesDB.Get(); 
-                var FName = Files.
-                    FirstOrDefault(f => f.Name == name);
-                if (FName == null)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }.*/
-
-            return ";;";
-        }
-
-        
+                
     }
 }
