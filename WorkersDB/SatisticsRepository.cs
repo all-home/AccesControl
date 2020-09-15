@@ -31,17 +31,16 @@ namespace WorkersDB
             return Context.StatItems.Find(id);
         }
 
-        public Statistics Delete(int id)
+        public void Delete(IEnumerable<Statistics> Stat)
         {
-            Statistics Stat = Get(id);
+           
 
             if (Stat != null)
             {
-                Context.StatItems.Remove(Stat);
+                Context.StatItems.RemoveRange(Stat);
                 Context.SaveChanges();
             }
-
-            return Stat;
+                        
         }
 
         public void Update(Statistics statistics)

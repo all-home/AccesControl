@@ -6,6 +6,7 @@ using WorkersDB.Interfaces;
 using WorkersDB.Models;
 using FileSave.interfaces;
 using BusinessLogic.Interfaces;
+using System.Linq;
 
 namespace BusinessLogic.WorkersRepo
 {
@@ -13,11 +14,13 @@ namespace BusinessLogic.WorkersRepo
     {
         private readonly IGRUDWorker WorkRepo;
         private readonly IFileUGD File;
+        private readonly IStat statRepo;
 
-        public Workers(IGRUDWorker gRUDWork, IFileUGD _File)
+        public Workers(IGRUDWorker gRUDWork, IFileUGD _File, IStat stat)
         {
             File = _File;
             WorkRepo = gRUDWork;
+            statRepo = stat;
         }
 
         public IEnumerable<Worker> Get()
@@ -51,8 +54,9 @@ namespace BusinessLogic.WorkersRepo
 
         public void Delete(int id)
         {
+            statRepo.Delete(GetWorkerStat(id));
             WorkRepo.Delete(id);
-
+            
         }
 
         public void Update(WorkerModel item)
@@ -73,6 +77,17 @@ namespace BusinessLogic.WorkersRepo
             }                      
 
         }
+
+        //get worker stat by him id
+        public IEnumerable<Statistics> GetWorkerStat(int id)
+        {
+            var stat = statRepo.Get();
+            Worker cWorker = Get(id);
+            var cWorkerStat = stat.Where(a => a.WorkerID == cWorker.id);
+            return cWorkerStat;
+                      
+        }
+
 
         //Check Readed Tag
         private bool TagIdChec (int? TagId)
