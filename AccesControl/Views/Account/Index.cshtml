@@ -1,47 +1,44 @@
 ﻿@model IEnumerable<AccesControl.Models.User>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
-
+<div class="row justify-content-lg-center" style="margin-top: 5%; background-color:white;">
 <p>
-    <a asp-action="Register">Create New</a>
+    <a class=" btn btn-primary btnp" asp-action="Register">Добавить</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Имя
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
+                Роль
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Password)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.RoleId == 1)
+                    {
+                        <text>Админ.</text>
+                    }
+                    else
+                    {
+                        <text>Польз.</text>
+                    }
+
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+</div>
