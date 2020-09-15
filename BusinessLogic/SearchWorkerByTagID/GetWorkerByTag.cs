@@ -115,8 +115,8 @@ namespace BusinessLogic.SearchWorkerByTagID
             if (profile != null)
             {
 
-                if (profile.StartWorking.Hour > date.Hour &&
-                        profile.StartWorking.Minute > date.Minute)
+                if (profile.StartWorking.Hour < date.Hour &&
+                        profile.StartWorking.Minute < date.Minute)
                 {
                     return true;
                 }
@@ -140,7 +140,7 @@ namespace BusinessLogic.SearchWorkerByTagID
             int hlate = date.Hour - profile.StartWorking.Hour;
             int mlate = date.Minute - profile.StartWorking.Minute;
 
-            return hlate.ToString() + ":" + mlate.ToString();
+            return hlate.ToString() + "ч. " + mlate.ToString() + "Мин. ";
 
         }
              
