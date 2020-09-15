@@ -1,28 +1,23 @@
 ﻿@model IEnumerable<ProfilesDB.Model.Profile>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
-
+<div class="row justify-content-lg-center" style="background-color: white; margin-top: 5%">
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить новый</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Название
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartWorking)
+               Время начала работы
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EndWorking)
+                Время завершения работы
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Active)
+                Активный
             </th>
             <th></th>
         </tr>
@@ -43,11 +38,11 @@
                 @Html.DisplayFor(modelItem => item.Active)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.id">Изм.</a> 
+                <a asp-action="Delete" asp-route-id="@item.id">Удал.</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>

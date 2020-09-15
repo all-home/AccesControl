@@ -1,45 +1,35 @@
 ﻿@model ProfilesDB.Model.Profile
 
-@{
-    ViewData["Title"] = "Create";
-}
 
-<h1>Create</h1>
 
-<h4>Profile</h4>
-<hr />
+<div class="row justify-content-center" style="background-color:white; margin-top: 5%;">
 <div class="row">
-    <div class="col-md-4">
+    
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label class="control-label">Название</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StartWorking" class="control-label"></label>
-                <input asp-for="StartWorking" class="form-control" />
+                <label class="control-label">Начало работы</label>
+                <input asp-for="StartWorking" class="form-control" type="time"/>
                 <span asp-validation-for="StartWorking" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EndWorking" class="control-label"></label>
-                <input asp-for="EndWorking" class="form-control" />
+                <label class="control-label">Заверщение раьоты</label>
+                <input asp-for="EndWorking" class="form-control" type="time"/>
                 <span asp-validation-for="EndWorking" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+                    <input class="form-check-input" asp-for="Active" /> Активный
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Создать" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+ </div>
