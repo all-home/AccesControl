@@ -86,7 +86,7 @@ namespace AccesControl.Controllers
         // GET: WorkersController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(repo.Get(id));
         }
 
         // POST: WorkersController/Delete/5
