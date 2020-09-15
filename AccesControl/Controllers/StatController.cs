@@ -25,24 +25,27 @@ namespace AccesControl.Controllers
         {
             var _stat = stat.Get();
             List<StatModel> statModels = new List<StatModel>();
-                            
+            try
+            {
                 foreach (Statistics a in _stat)
                 {
                     Worker cWorker = workersRepo.Get(a.WorkerID);
 
-                statModels.Add(new StatModel
-                {
-                    WorkerID = cWorker.id,
-                    Name = cWorker.Name,
-                    Surname = cWorker.Surname,
-                    Patronymic = cWorker.Patronymic,
-                    StartWork = a.StartWork,
-                    EndWork = a.EndWork,
-                    Late = a.Late,
-                    Latetime = a.Latetime
+                    statModels.Add(new StatModel
+                    {
+                        WorkerID = cWorker.id,
+                        Name = cWorker.Name,
+                        Surname = cWorker.Surname,
+                        Patronymic = cWorker.Patronymic,
+                        StartWork = a.StartWork,
+                        EndWork = a.EndWork,
+                        Late = a.Late,
+                        Latetime = a.Latetime
 
-                }); ;
+                    }); ;
                 }
+            }
+            catch { }
 
             if (statModels != null)
             {
