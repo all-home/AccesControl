@@ -10,7 +10,7 @@ namespace AccesControl.Controllers
 {
     public class SearchByTagIDController : Controller
     {
-        ISearchByTagID WorkerByTagID;
+        private readonly ISearchByTagID WorkerByTagID;
        public SearchByTagIDController(ISearchByTagID searchByTagID)
         {
             WorkerByTagID = searchByTagID;        

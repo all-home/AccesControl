@@ -7,7 +7,7 @@ namespace WorkersDB
 {
     public class WorkersRepository : IGRUDWorker
     {
-        private WorkerContext context;
+        private readonly WorkerContext context;
 
         public WorkersRepository(WorkerContext _context)
         {

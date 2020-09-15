@@ -11,8 +11,8 @@ namespace FileSave
 {
     public class FiileDelGetUpload : IFileUGD
     {
-        IFilesDB FilesDB;
-        IHostingEnvironment _appEnvironment;
+        private readonly IFilesDB FilesDB;
+        private readonly IHostingEnvironment _appEnvironment;
         public FiileDelGetUpload(IHostingEnvironment appEnvironment, IFilesDB _FilesDB)
         {
             FilesDB = _FilesDB;

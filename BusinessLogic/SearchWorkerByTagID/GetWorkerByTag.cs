@@ -12,9 +12,9 @@ namespace BusinessLogic.SearchWorkerByTagID
 {
     public class GetWorkerByTag : ISearchByTagID
     {
-        IStat statRepo;
-        IProfiles profileRepo;
-        IGRUDWorker workerRepo;
+        private readonly IStat statRepo;
+        private readonly IProfiles profileRepo;
+        private readonly IGRUDWorker workerRepo;
 
         public GetWorkerByTag(IStat _statRepo, IProfiles _profileRepo, IGRUDWorker _workerRepo)
         {
@@ -29,14 +29,14 @@ namespace BusinessLogic.SearchWorkerByTagID
                        
             try
             {
-                addStatResUser(ResWoker);
+                AddStatResUser(ResWoker);
             }
             catch { }
             return ResWoker;
         }
 
 
-        private void addStatResUser(Worker worker)
+        private void AddStatResUser(Worker worker)
         {
             
                 var WorkerDayStat = CurentDayEnterice(worker.id);

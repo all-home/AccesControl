@@ -8,7 +8,7 @@ namespace WorkersDB
 {
     public class SatisticsRepository : IStat
     {
-        private StatisticsContext Context;
+        private readonly StatisticsContext Context;
 
         public SatisticsRepository(StatisticsContext _context)
         {

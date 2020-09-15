@@ -11,7 +11,7 @@ namespace AccesControl.Controllers
 {
     public class ProfileController : Controller
     {
-        IProfiles profileRepo;
+        private readonly IProfiles profileRepo;
 
         public ProfileController(IProfiles profile)
         {

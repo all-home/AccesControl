@@ -10,7 +10,7 @@ namespace AccesControl.Controllers
     
     public class WorkersController : Controller
     {
-        IWorkersRepo repo;
+        private readonly IWorkersRepo repo;
 
         public WorkersController(IWorkersRepo repo)
         {

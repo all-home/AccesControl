@@ -9,8 +9,8 @@ namespace AccesControl.Controllers
 {
     public class StatController : Controller
     {
-        IStat stat;
-        IWorkersRepo workersRepo;
+        private readonly IStat stat;
+        private readonly IWorkersRepo workersRepo;
 
         public StatController(IStat _stat, IWorkersRepo _Repo)
         {
