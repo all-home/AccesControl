@@ -4,6 +4,8 @@ using BusinessLogic.Interfaces;
 using BusinessLogic.Models;
 using WorkersDB.Models;
 using Microsoft.AspNetCore.Authorization;
+using AccesControl.ViewModels;
+using WorkersDB.Interfaces;
 
 namespace AccesControl.Controllers
 {
@@ -11,8 +13,8 @@ namespace AccesControl.Controllers
     public class WorkersController : Controller
     {
         private readonly IWorkersRepo repo;
-
-        public WorkersController(IWorkersRepo repo)
+        
+        public WorkersController(IWorkersRepo repo )
         {
             this.repo = repo;
         }
@@ -28,7 +30,10 @@ namespace AccesControl.Controllers
         // GET: WorkersController/Details/5
         public ActionResult Details(int id)
         {
-            Worker worker = repo.Get(id);
+            WorkerDeatailModel worker = new WorkerDeatailModel {
+            Worker = repo.Get(id),
+            CWorkerStat = repo.GetWorkerStat(id)
+            };
             return View(worker);
         }
 

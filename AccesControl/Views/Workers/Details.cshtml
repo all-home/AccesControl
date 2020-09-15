@@ -1,60 +1,99 @@
-﻿@model WorkersDB.Models.Worker
+﻿@model AccesControl.ViewModels.WorkerDeatailModel;
 
-@{
-    ViewData["Title"] = "Details";
-}
-
-<h1>Details</h1>
 
 <div>
-    <h4>Worker</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TagId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TagId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    
+    <div class="row justify-content" style="background-color:white; margin-top: 5%;">
+        <div class="col-md-4">
+            @if (Model.Worker.Image != null)
+            {
+                <img style='width:300px; height:250px;' src=@Url.Content(Model.Worker.Image) ; />
+            }
+
+        </div>
+        <!--Bio-->
+        <div class="col-md-3 col-md-offset-2 ">
+            <div class="center-block">
+                <dl class="dl-horizontal sRes">
+                    <dt>Фамилия</dt>
+                    <dd>
+                        @Html.DisplayFor(model => Model.Worker.Surname)
+                    </dd>
+
+                    <dt>Имя</dt>
+                    <dd>
+                        @Html.DisplayFor(model => Model.Worker.Name)
+                    </dd>
+
+                    <dt>Отчество</dt>
+                    <dd>
+                        @Html.DisplayFor(model => Model.Worker.Patronymic)
+                    </dd>
+
+                    <dt>Должность</dt>
+                    <dd>
+                        @Html.DisplayFor(Model => Model.Worker.Position)
+                    </dd>
+                    <dt>Телефон</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Worker.Tel)
+                    </dd>
+
+                </dl>
+            </div>
+
+
+            <a class="btn btn-danger" asp-area="" asp-controller="Workers" asp-action="Index">Назад</a>
+        </div>
+
+    </div>
+    <hr/>
+    <div class="row justify-content" style="background-color: white; margin-top: 3%;">
+        <div class="col-md-4">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Вход
+                        </th>
+                        <th>
+                           Выход
+                        </th>
+                        <th>
+                           Опоздал
+                        </th>
+                        <th>
+                            На сколько
+                        </th>
+                        <th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CWorkerStat)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndWork)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Late)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Latetime)
+                        </td>
+
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+
+        </div>
+
+
 </div>

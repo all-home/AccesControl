@@ -11,6 +11,8 @@ namespace BusinessLogic.Interfaces
         void Create(WorkerModel item);
         void Delete(int id);
         void Update(WorkerModel item);
-        
-    }
+        public IEnumerable<Statistics> GetWorkerStat(int id);
+
+
+        }
 }
