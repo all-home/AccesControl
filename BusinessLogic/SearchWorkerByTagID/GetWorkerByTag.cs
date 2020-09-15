@@ -29,7 +29,10 @@ namespace BusinessLogic.SearchWorkerByTagID
                        
             try
             {
-                AddStatResUser(ResWoker);
+                if (ResWoker != null)
+                {
+                    AddStatResUser(ResWoker);
+                }
             }
             catch { }
             return ResWoker;

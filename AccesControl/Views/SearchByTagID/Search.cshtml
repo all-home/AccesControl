@@ -1,57 +1,56 @@
 ﻿@model WorkersDB.Models.Worker
 
-@{
-    ViewData["Title"] = "Search";
-}
+    <div class="row justify-content-center" style="margin-top: 5%">
 
-<h1>Search</h1>
+        <div>
+            <hr />
+            <dl class="row justify-content">
+                <div class="col-md-4">
+                    @if (Model.Image != null)
+                    {
+                        <img style='width:300px; height:250px;' src=@Url.Content(Model.Image); />
+                    }
 
-<div>
-    <h4>Worker</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TagId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TagId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Patronymic)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tel)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tel)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Position)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Position)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-    </dl>
+                </div>
+                <!--Bio-->
+                <div class="col-md-3 col-md-offset-2 ">
+                    <div class="center-block">
+                        <dl class="dl-horizontal sRes">
+                            <dt>Фамилия</dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Surname)
+                            </dd>
+
+                            <dt>Имя</dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Name)
+                            </dd>
+
+                            <dt>Отчество</dt>
+                            <dd>
+                                @Html.DisplayFor(model => Model.Patronymic)
+                            </dd>
+
+                            <dt>Должность</dt>
+                            <dd>
+                                @Html.DisplayFor(Model => Model.Position)
+                            </dd>
+
+                        </dl>
+
+
+                    </div>
+
+
+                    <a class="btn btn-danger" asp-area="" asp-controller="SearchPerson" asp-action="Index">Назад</a>
+                </div>
+
 </div>
+        </div>
+
+
+    <script>
+            setTimeout(function () { javascript: history.go(-1) }, 5000)
+
+    </script>
 

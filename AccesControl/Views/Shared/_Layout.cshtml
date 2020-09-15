@@ -15,26 +15,32 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body style="background-color:#f8f9fa;">
-    
-    
-        <nav class="navbar navbar-expand-md fixed-top" style="background-color: #2C2C2C;">
-            <div class="container">
-                <div>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><i class="glyphicon glyphicon-home" aria-hidden="true"></i></a>
-                </div>
+<body style="background-color: #F0F0F0;">
 
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="        background-color: #9B9696;">
+        <div class="container">
+            <div class="col-lg-2 himg">
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/navigation/027-home.svg" width="30"></a>
             </div>
-        </nav>
-       
+
+            <div class="col-lg-5 col-lg-offset-5 himg">
+                <h4> @User.Identity.Name</h4>
+            </div>
+
+        </div>
+
+
+    </nav>
 
     <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
+        
         @RenderBody()
 
-
     </div>
+
+    
 
 
     @RenderSection("Scripts", required: false)
