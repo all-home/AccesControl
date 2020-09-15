@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Models;
 using WorkersDB.Models;
-using Microsoft.AspNetCore.Authorization;
 using AccesControl.ViewModels;
-using WorkersDB.Interfaces;
 
 namespace AccesControl.Controllers
 {
-    
+
     public class WorkersController : Controller
     {
         private readonly IWorkersRepo repo;
